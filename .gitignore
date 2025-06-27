@@ -1,0 +1,10 @@
+# 모든 node_modules (하위 폴더 포함)
+**/node_modules/
+
+# 모든 .env 파일 (하위 폴더 포함)
+**/.env
+**/.env.*
+
+extension.crx
+extension.pem
+extension.zip

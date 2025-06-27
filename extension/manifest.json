@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "AI Input Assistant",
+  "version": "0.1.0",
+  "description": "입력창에 AI 추천 및 요약 기능을 제공하는 확장 프로그램.",
+  "permissions": ["storage", "scripting"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content-script.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "AI Input Assistant"
+  },
+  "icons": {
+    "16": "icon-16.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png"
+  }
+}
