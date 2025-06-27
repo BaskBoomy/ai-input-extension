@@ -366,30 +366,6 @@
         button.style.display = "";
       }
     });
-    function cleanup() {
-      removeFloatingCleanButton();
-      input.removeEventListener("blur", cleanup);
-      input.removeEventListener("focusout", cleanup);
-      input.removeEventListener("keydown", onKeydown);
-      observer.disconnect();
-    }
-    function onKeydown(ev) {
-      const kev = ev;
-      if (kev.key === "Escape") cleanup();
-    }
-    input.addEventListener("blur", cleanup);
-    input.addEventListener("focusout", cleanup);
-    input.addEventListener("keydown", onKeydown);
-    const observer = new MutationObserver((muts) => {
-      muts.forEach((mut) => {
-        mut.removedNodes.forEach((node) => {
-          if (node === input) cleanup();
-        });
-      });
-    });
-    if (input.parentElement) {
-      observer.observe(input.parentElement, { childList: true });
-    }
   }
   function adjustPopupPosition(popup, x, y) {
     const popupRect = popup.getBoundingClientRect();

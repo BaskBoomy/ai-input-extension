@@ -182,33 +182,7 @@ function handleInputFocusOrInput(e: Event) {
       button.style.display = "";
     }
   });
-  // cleanup: blur, focusout, ESC, DOM 제거
-  function cleanup() {
-    removeFloatingCleanButton();
-    // removeResultPopup();
-    input.removeEventListener("blur", cleanup);
-    input.removeEventListener("focusout", cleanup);
-    input.removeEventListener("keydown", onKeydown);
-    observer.disconnect();
-  }
-  function onKeydown(ev: Event) {
-    const kev = ev as KeyboardEvent;
-    if (kev.key === "Escape") cleanup();
-  }
-  input.addEventListener("blur", cleanup);
-  input.addEventListener("focusout", cleanup);
-  input.addEventListener("keydown", onKeydown);
-  // input DOM이 제거될 때도 cleanup
-  const observer = new MutationObserver((muts) => {
-    muts.forEach((mut) => {
-      mut.removedNodes.forEach((node) => {
-        if (node === input) cleanup();
-      });
-    });
-  });
-  if (input.parentElement) {
-    observer.observe(input.parentElement, { childList: true });
-  }
+  // cleanup, observer 등록 등은 focus 이벤트에서만 처리하는 것이 좋음
 }
 
 // --- 드래그 요약 팝업 ---
