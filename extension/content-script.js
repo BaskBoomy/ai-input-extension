@@ -3,7 +3,7 @@
   async function fetchSuggestion(context, label) {
     try {
       const res = await fetch(
-        `http://localhost:3003/api/suggest?context=${context}&label=${label}`
+        `https://mate-x.flowtest.info/ai-input-extension/api/suggest?context=${context}&label=${label}`
       );
       if (!res.ok) throw new Error("\uCD94\uCC9C \uC694\uCCAD \uC2E4\uD328");
       const data = await res.json();
@@ -14,7 +14,9 @@
   }
   async function fetchSummary(text) {
     try {
-      const res = await fetch(`http://localhost:3003/api/summarize?text=${text}`);
+      const res = await fetch(
+        `https://mate-x.flowtest.info/ai-input-extension/api/summarize?text=${text}`
+      );
       if (!res.ok) throw new Error("\uC694\uC57D \uC694\uCCAD \uC2E4\uD328");
       const data = await res.json();
       return data.summary || "";
